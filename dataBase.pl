@@ -13,13 +13,8 @@ weapon(bow).
 weapon(potion).
 
 
-hasWeapon(Name, Weapon):-
-    character(Name,weapon(Weapon),_,_);
-    character(Name,_,weapon(Weapon),_);
-    character(Name,_,_,weapon(Weapon)).
-
 :- dynamic(character/5).
-:- dynamic(askWepon/1).
+:- dynamic(askWeapon/1).
 %S P W
 character(1,aristocrate,
     weapon(potion),
@@ -107,10 +102,13 @@ generateGuilty():-
     character(RandomID,Name, W1,W2, W3),
     assert(guilty(RandomID,Name, W1,W2, W3)).
     
-askWepon(Wepon):-
-    guilty(_, _, weapon(Wepon),_,_); retract(character(_,_, weapon(Wepon),_,_)),
-    guilty(_, _, _,weapon(Wepon),_); retract(character(_,_, _,weapon(Wepon),_)),
-    guilty(_, _, _,_,weapon(Wepon)); retract(character(_,_, _,_,weapon(Wepon))).
-     
-    
-    
+hasWeapon(Weapon):-
+    guilty(_,_,weapon(Weapon),_,_);
+    guilty(_,_,_,weapon(Weapon),_);
+    guilty(_,_,_,_,weapon(Weapon)).
+
+askWeapon(Weapon):-
+    hasWeapon(Weapon)->
+        retract(character(_,_, weapon(Weapon),_,_));
+        retract(character(_,_, _,weapon(Weapon),_));
+        retract(character(_,_, _,_,weapon(Weapon))).
