@@ -97,16 +97,18 @@ character(16,doll,
     weapon(flail),
     weapon(gem)).
 
+%Genera un culpable aleatorio
 generateGuilty():-
     random(1,17,RandomID),
     character(RandomID,Name, W1,W2, W3),
     assert(guilty(RandomID,Name, W1,W2, W3)).
-    
+%Verifica si el culpable tiene el arma    
 hasWeapon(Weapon):-
     guilty(_,_,weapon(Weapon),_,_);
     guilty(_,_,_,weapon(Weapon),_);
     guilty(_,_,_,_,weapon(Weapon)).
 
+%Si el cupable tiene el arma no pasa nada, si no la tiene, elimina a los que la tengan 
 askWeapon(Weapon):-
     hasWeapon(Weapon)->
         retract(character(_,_, weapon(Weapon),_,_));
