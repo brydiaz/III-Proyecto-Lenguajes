@@ -5,7 +5,13 @@
  */
 package royaltraitor;
 
+import java.util.ArrayList;
+import java.util.Map;
+import logic.Prolog;
+import logic.Weapon;
+import logic.Character;
 import org.jpl7.Query;
+import org.jpl7.Term;
 
 /**
  *
@@ -18,9 +24,14 @@ public class RoyalTraitor {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        String t1 = "consult('dataBase.pl')";
-        Query con = new Query(t1);
-        System.out.println(t1+" "+(con.hasSolution() ?"Correcto":"Fallo"));
+        Prolog dataBase = new Prolog();
+        ArrayList<Weapon> weapons = dataBase.getWeapons(); //SE OBTIENEN LAS ARMAS
+        ArrayList<Character> characters = dataBase.getCharacters(); //SE OBTIENEN LAS ARMAS
+        Character guilty = dataBase.getGuilty();//SE OBTIENE EL CULPABLE
+        dataBase.make2IntialSuspects();//SE GENERAN DOS POSIBLES SOSPECHOZOS
+        ArrayList<Character> suspects = dataBase.getSuspects(); //SE OBTIENEN LOS SOSPECHOSOS
+        //suspects = dataBase.askWeapon("wand");//PREGUNTARA A LA BASES SI EL CULPABLE TIENE ESA ARMA, SI NO LA TIENE REVISAR SI UN SOSPECHOSLO LA TIENE Y LO ELIMINA
+       
     }
     
 }

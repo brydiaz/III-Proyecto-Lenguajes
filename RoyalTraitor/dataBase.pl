@@ -125,11 +125,11 @@ addToSuspects(NAME):-
 hasWeapon(Weapon):-
     guilty(_,_,weapon(Weapon),_,_);
     guilty(_,_,_,weapon(Weapon),_);
-    guilty(_,_,_,_,weapon(Weapon)).
+    guilty(_,_,_,_,weapon(Weapon));!.
 
 %Si el cupable tiene el arma no pasa nada, si no la tiene, elimina a los que la tengan 
 askWeapon(Weapon):-
     hasWeapon(Weapon)-> 
         retract(faceUp(_,_, weapon(Weapon),_,_));
         retract(faceUp(_,_, _,weapon(Weapon),_));
-        retract(faceUp(_,_, _,_,weapon(Weapon))).
+        retract(faceUp(_,_, _,_,weapon(Weapon)));!.
