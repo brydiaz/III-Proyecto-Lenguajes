@@ -15,6 +15,15 @@ public class Character {
     private Weapon w1;
     private Weapon w2;
     private Weapon w3;
+    private boolean up = false;
+
+    public boolean isUp() {
+        return up;
+    }
+
+    public void setUp(boolean up) {
+        this.up = up;
+    }
 
     public Character(int id, String name, Weapon w1, Weapon w2, Weapon w3) {
         this.id = id;

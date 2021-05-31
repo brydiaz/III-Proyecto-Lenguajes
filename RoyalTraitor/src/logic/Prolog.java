@@ -71,6 +71,7 @@ public class Prolog {
                     Weapon w2 = new  Weapon(k.get("W2").toString());
                     Weapon w3 = new  Weapon(k.get("W3").toString());
                     finalGuilty = new Character(idToAdd, name, w1, w2, w3);
+                    finalGuilty.setUp(true);
                 }
             }
            
@@ -138,6 +139,18 @@ public class Prolog {
             }
         }
         return this.getSuspects();
+    }
+    
+    public ArrayList<Character> actCharacters(ArrayList<Character> characters,ArrayList<Character> guilty){
+        for(int i = 0; i<guilty.size();i++){
+            int id = guilty.get(i).getId();
+            for(int j = 0; j<characters.size();j++){
+                if(id == characters.get(j).getId()){
+                    characters.get(j).setUp(true);
+                }
+            }
+        }
+        return characters;
     }
    
     

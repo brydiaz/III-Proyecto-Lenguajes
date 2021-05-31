@@ -7,11 +7,14 @@ package royaltraitor;
 
 import java.util.ArrayList;
 import java.util.Map;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import logic.Prolog;
 import logic.Weapon;
 import logic.Character;
 import org.jpl7.Query;
 import org.jpl7.Term;
+import view.MainView;
 
 /**
  *
@@ -31,7 +34,10 @@ public class RoyalTraitor {
         dataBase.make2IntialSuspects();//SE GENERAN DOS POSIBLES SOSPECHOZOS
         ArrayList<Character> suspects = dataBase.getSuspects(); //SE OBTIENEN LOS SOSPECHOSOS
         //suspects = dataBase.askWeapon("wand");//PREGUNTARA A LA BASES SI EL CULPABLE TIENE ESA ARMA, SI NO LA TIENE REVISAR SI UN SOSPECHOSLO LA TIENE Y LO ELIMINA
-       
+        characters = dataBase.actCharacters(characters, suspects);
+        MainView screen = new MainView();
+        screen.initialDraws(characters);
+        
     }
     
 }
