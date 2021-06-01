@@ -5,6 +5,7 @@
  */
 package royaltraitor;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Map;
 import javax.swing.ImageIcon;
@@ -36,7 +37,13 @@ public class RoyalTraitor {
         //suspects = dataBase.askWeapon("wand");//PREGUNTARA A LA BASES SI EL CULPABLE TIENE ESA ARMA, SI NO LA TIENE REVISAR SI UN SOSPECHOSLO LA TIENE Y LO ELIMINA
         characters = dataBase.actCharacters(characters, suspects);
         MainView screen = new MainView();
-        screen.initialDraws(characters);
+        
+        ArrayList road = new ArrayList();
+        for(int i=0;i<8;i++){
+            road.add(0);
+        }
+        road.set(0, 1);
+        screen.initialDraws(characters, road);
         
     }
     

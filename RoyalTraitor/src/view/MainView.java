@@ -20,7 +20,7 @@ public class MainView extends javax.swing.JFrame {
     /**
      * Creates new form MainView
      */
-    
+    JLabel background = null;
     public MainView() {
         initComponents();
     }
@@ -55,7 +55,7 @@ public class MainView extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     
-    public void initialDraws(ArrayList<Character> characters){
+    public void initialDraws(ArrayList<Character> characters,ArrayList road){
         int iC = 0;
         this.setVisible(true);
         this.setLocationRelativeTo(null);
@@ -142,11 +142,29 @@ public class MainView extends javax.swing.JFrame {
             iC++;
         }
         
+        posX = 120;
+        posY = 100;
+        for(int i = 0; i<road.size();i++){
+            JLabel p = new JLabel();
+            p.setSize(45,45);
+            String nameC = "question";
+            ImageIcon pI = new ImageIcon(RoyalTraitor.class.getResource("/view/resources/characters/"+nameC+".png"));
+            p.setIcon(pI);
+            p.setLocation(posX, posY);
+            posX = posX+80;
+
+            background.add(p);
+
+            }
         
+        
+        this.background = background;
         this.add(background);
        this.pack();
     
     }
+    
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
