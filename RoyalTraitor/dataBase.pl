@@ -1,3 +1,5 @@
+% HECHOS
+% armas
 weapon(sword).
 weapon(key).
 weapon(spear).
@@ -13,13 +15,17 @@ weapon(bow).
 weapon(potion).
 
 %GUARDAR LOS PERSONAJES DE FORMA DINAMICA
-
-
 :- dynamic(character/5).
 :- dynamic(faceUp/5).
 :- dynamic(askWeapon/1).
 :- dynamic(turn2Arround/0).
 :- dynamic(addToSuspects/1).
+
+
+
+% HECHOS
+% personajes
+
 %S P W
 character(1,aristocrate,
     weapon(potion),
@@ -101,13 +107,24 @@ character(16,doll,
     weapon(mullet),
     weapon(flail),
     weapon(gem)).
-%LLAMAR A TODOS LOS PERSONAJES DESDE JAVA Y GUARDARLOS
 
+%-------------------------------------------------------
+
+
+
+%=======================================================
+%LLAMAR A TODOS LOS PERSONAJES DESDE JAVA Y GUARDARLOS
+%=======================================================
+
+
+% Generar un culpable de manera random según su ID
 generateGuilty():-
     random(1,17,RandomID),
     character(RandomID,Name, W1,W2, W3),
     assert(guilty(RandomID,Name, W1,W2, W3)).
 
+
+% Se voltean 2 posibles culpables de manera random
 turn2Arround():-
     random(1,8, R1),
     random(8,17, R2),
@@ -115,17 +132,24 @@ turn2Arround():-
     character(R2,Name2, W12,W22, W32),
     assert(faceUp(R1, Name, W1,W2,W3)),
     assert(faceUp(R2, Name2, W12,W22,W32)).
-%SE PODRIAN SACAR DE LA LISTA ACA Y EN AÑADIR A SOSPECHOSO
 
+
+%=========================================================
+%SE PODRIAN SACAR DE LA LISTA ACA Y EN AÑADIR A SOSPECHOSO
+%=========================================================
+
+% Añade un personaje a los sospechosos
 addToSuspects(NAME):-
     character(IDC,NAME,WC,WC2,WC3),
     assert(faceUp(IDC,NAME,WC,WC2,WC3)).
 
 
+% Verifica si un personaje tiene X arma
 hasWeapon(Weapon):-
     guilty(_,_,weapon(Weapon),_,_);
     guilty(_,_,_,weapon(Weapon),_);
     guilty(_,_,_,_,weapon(Weapon));!.
+
 
 %Si el cupable tiene el arma no pasa nada, si no la tiene, elimina a los que la tengan 
 askWeapon(Weapon):-
