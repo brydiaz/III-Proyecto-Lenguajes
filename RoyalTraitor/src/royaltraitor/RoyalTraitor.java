@@ -39,7 +39,7 @@ public class RoyalTraitor {
         MainView screen = new MainView();
         
         ArrayList road = new ArrayList();
-        for(int i=0;i<8;i++){
+        for(int i=0;i<15;i++){
             road.add(0);
         }
         road.set(0, 1);
