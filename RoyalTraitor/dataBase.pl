@@ -15,11 +15,14 @@ weapon(bow).
 weapon(potion).
 
 %GUARDAR LOS PERSONAJES DE FORMA DINAMICA
-:- dynamic(character/5).
-:- dynamic(faceUp/5).
-:- dynamic(askWeapon/1).
-:- dynamic(turn2Arround/0).
-:- dynamic(addToSuspects/1).
+:- dynamic character/1.
+:- dynamic faceUp/1.
+:- dynamic askWeapon/1.
+:- dynamic turn2Arround/1.
+:- dynamic addToSuspects/1.
+:- dynamic deleteAllSuspectsW1/1.
+:- dynamic deleteAllSuspectsW2/1.
+:- dynamic deleteAllSuspectsW3/1.
 
 
 
@@ -53,9 +56,10 @@ character(5,spirit,
     weapon(key)).
 %A M S 
 character(6,healer,
-    weapon(sword),
+    
     weapon(mullet),
-    weapon(axe)).
+    weapon(axe),
+    weapon(sword)).
 %B K S
 character(7,king,
     weapon(sword),
@@ -146,14 +150,36 @@ addToSuspects(NAME):-
 
 % Verifica si un personaje tiene X arma
 hasWeapon(Weapon):-
-    guilty(_,_,weapon(Weapon),_,_);
-    guilty(_,_,_,weapon(Weapon),_);
-    guilty(_,_,_,_,weapon(Weapon));!.
+    guilty(_,_,weapon(Weapon),_,_)->true;
+    guilty(_,_,_,weapon(Weapon),_)->true;
+    guilty(_,_,_,_,weapon(Weapon))-> true;
+    2=1,!.
 
+deleteAllSuspectsW1(Weapon):-
+    Weapon,
+    retract(faceUp(_,_, Weapon,_,_))->
+    deleteAllSuspectsW1(Weapon);
+    true, !.
+
+deleteAllSuspectsW2(Weapon):-
+    Weapon,
+    retract(faceUp(_,_,_,Weapon,_))->
+    deleteAllSuspectsW2(Weapon);
+    true, !.
+
+deleteAllSuspectsW3(Weapon):-
+    Weapon,
+    retract(faceUp(_,_,_,_,Weapon))->
+    deleteAllSuspectsW3(Weapon);
+    true, !.
 
 %Si el cupable tiene el arma no pasa nada, si no la tiene, elimina a los que la tengan 
 askWeapon(Weapon):-
-    hasWeapon(Weapon)-> 
-        retract(faceUp(_,_, weapon(Weapon),_,_));
-        retract(faceUp(_,_, _,weapon(Weapon),_));
-        retract(faceUp(_,_, _,_,weapon(Weapon)));!.
+    hasWeapon(Weapon)-> true;
+        %SI ESTÁ EN EL PRIMERO, SEGUNDO Y TERCERO LOS BORRA EN ESE ORDEN
+        deleteAllSuspectsW1(weapon(Weapon)),
+        deleteAllSuspectsW2(weapon(Weapon)),
+        deleteAllSuspectsW3(weapon(Weapon))->write('Borrado')
+        ->false;
+       
+        false.
