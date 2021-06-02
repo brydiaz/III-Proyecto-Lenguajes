@@ -143,25 +143,53 @@ public class MainView extends javax.swing.JFrame {
         posX = 120;
         posY = 145;
         for(int i = 0; i<road.size();i++){
-            if (posX == 165){
+            String nameC = "question";
+            
+            if (road.get(i).equals(1)){
+                nameC = "thiefH";
+            }
+            
+            else if (posX == 165 ||posX == 165 ){
+                System.out.println("p1");
+                if (road.get(i).equals(1)){
+                nameC = "thiefV";
+                }else{
+                    nameC = "mud2";
+                }
                 posY = posY+45;
                 posX = posX-44;
+                
             }
             
             else if (posX == 391){
+                System.out.println("p2");
+                if (road.get(i).equals(1)){
+                nameC = "thiefV";
+                }else{
+                    nameC = "mud2";
+                }
                 posY = posY+45;
                 posX = posX-44;
             }
             
             else if (posX == 527){
+                System.out.println("p3");
+                if (road.get(i).equals(1)){
+                nameC = "thiefV";
+                }else{
+                    nameC = "mud2";
+                }
                 posY = posY+45;
                 posX = posX-44;
-            }
+            }else{
+                    nameC = "mud";
+                }
+            
 
             JLabel p = new JLabel();
             p.setSize(45,45);
-            String nameC = "question";
             ImageIcon pI = new ImageIcon(RoyalTraitor.class.getResource("/view/resources/characters/"+nameC+".png"));
+
             p.setIcon(pI);
             p.setLocation(posX, posY);
             posX = posX+45;

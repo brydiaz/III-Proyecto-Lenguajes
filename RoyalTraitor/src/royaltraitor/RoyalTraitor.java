@@ -42,7 +42,7 @@ public class RoyalTraitor {
         for(int i=0;i<15;i++){
             road.add(0);
         }
-        road.set(0, 1);
+        road.set(1, 1);
         screen.initialDraws(characters, road);
         
     }
