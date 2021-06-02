@@ -5,9 +5,12 @@
  */
 package view;
 
+import java.awt.Component;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import royaltraitor.RoyalTraitor;
 import logic.Character;
 
@@ -16,9 +19,7 @@ import logic.Character;
  * @author bryan
  */
 public class MainView extends javax.swing.JFrame {
-
-
-    JLabel background = null;
+    boolean f = true;
     public MainView() {
         initComponents();
     }
@@ -32,18 +33,25 @@ public class MainView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jbackground = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(792, 504));
+
+        jbackground.setPreferredSize(new java.awt.Dimension(792, 504));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 792, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jbackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 504, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jbackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -54,15 +62,17 @@ public class MainView extends javax.swing.JFrame {
      */
     
     public void initialDraws(ArrayList<Character> characters,ArrayList road){
+ 
         int iC = 0;
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-        JLabel background = new JLabel();
-        background.setSize(792, 504);
        
-        ImageIcon backgroundImage = new ImageIcon(RoyalTraitor.class.getResource("/view/resources/Mapa.png"));
-        background.setIcon(backgroundImage);
         
+        this.jbackground.removeAll();
+
+        ImageIcon backgroundImage = new ImageIcon(RoyalTraitor.class.getResource("/view/resources/Mapa.png"));
+        this.jbackground.setIcon(backgroundImage);
+        this.jbackground.setSize(792,504);
        
         int posX = 185;//60 inicial
         int posY = 20;//40 inicial
@@ -80,7 +90,7 @@ public class MainView extends javax.swing.JFrame {
             p.setIcon(pI);
             p.setLocation(posX, posY);
             posX = posX+120;
-            background.add(p);
+            this.jbackground.add(p);
             iC ++;
         }
         posX = 40;
@@ -98,7 +108,7 @@ public class MainView extends javax.swing.JFrame {
             p.setIcon(pI);
             p.setLocation(posX, posY);
             posY = posY+80;
-            background.add(p);
+            this.jbackground.add(p);
             iC++;
         }
         
@@ -117,7 +127,7 @@ public class MainView extends javax.swing.JFrame {
             p.setIcon(pI);
             p.setLocation(posX, posY);
             posX = posX+120;
-            background.add(p);
+            this.jbackground.add(p);
             iC++;
         }
         
@@ -136,7 +146,7 @@ public class MainView extends javax.swing.JFrame {
             p.setIcon(pI);
             p.setLocation(posX, posY);
             posY = posY+80;
-            background.add(p);
+            this.jbackground.add(p);
             iC++;
         }
         
@@ -149,38 +159,15 @@ public class MainView extends javax.swing.JFrame {
                 nameC = "thiefH";
             }
             
-            else if (posX == 165 ||posX == 165 ){
-                System.out.println("p1");
+            else if (i == 1||i == 5||i == 10||i == 14){
+        
                 if (road.get(i).equals(1)){
                 nameC = "thiefV";
                 }else{
                     nameC = "mud2";
                 }
                 posY = posY+45;
-                posX = posX-44;
-                
-            }
-            
-            else if (posX == 391){
-                System.out.println("p2");
-                if (road.get(i).equals(1)){
-                nameC = "thiefV";
-                }else{
-                    nameC = "mud2";
-                }
-                posY = posY+45;
-                posX = posX-44;
-            }
-            
-            else if (posX == 527){
-                System.out.println("p3");
-                if (road.get(i).equals(1)){
-                nameC = "thiefV";
-                }else{
-                    nameC = "mud2";
-                }
-                posY = posY+45;
-                posX = posX-44;
+                posX = posX-45;
             }else{
                     nameC = "mud";
                 }
@@ -189,25 +176,26 @@ public class MainView extends javax.swing.JFrame {
             JLabel p = new JLabel();
             p.setSize(45,45);
             ImageIcon pI = new ImageIcon(RoyalTraitor.class.getResource("/view/resources/characters/"+nameC+".png"));
-
             p.setIcon(pI);
             p.setLocation(posX, posY);
             posX = posX+45;
             
-            background.add(p);
+            this.jbackground.add(p);
+            
 
             }
-        
-        
-        this.background = background;
-        this.add(background);
-       this.pack();
+ 
+        this.jbackground.repaint();
     
     }
+   
+    
+
     
     
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jbackground;
     // End of variables declaration//GEN-END:variables
 }

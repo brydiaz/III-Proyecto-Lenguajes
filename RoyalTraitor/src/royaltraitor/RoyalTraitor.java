@@ -26,7 +26,7 @@ public class RoyalTraitor {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         // TODO code application logic here
         Prolog dataBase = new Prolog();
         ArrayList<Weapon> weapons = dataBase.getWeapons(); //SE OBTIENEN LAS ARMAS
@@ -42,8 +42,22 @@ public class RoyalTraitor {
         for(int i=0;i<15;i++){
             road.add(0);
         }
-        road.set(1, 1);
-        screen.initialDraws(characters, road);
+        
+        int k = 0;
+        for (int i=0;i<15;i++){
+            if(k== 0){
+               road.set(k, 1);
+            }else{
+                road.set(k-1, 0);
+                road.set(k, 1);
+            }
+            
+            k++;
+            screen.initialDraws(characters, road);
+            Thread.sleep(2000);
+        }
+        
+        
         
     }
     
