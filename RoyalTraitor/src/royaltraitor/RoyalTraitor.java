@@ -34,10 +34,17 @@ public class RoyalTraitor {
         Character guilty = dataBase.getGuilty();//SE OBTIENE EL CULPABLE
         dataBase.make2IntialSuspects();//SE GENERAN DOS POSIBLES SOSPECHOZOS
         ArrayList<Character> suspects = dataBase.getSuspects(); //SE OBTIENEN LOS SOSPECHOSOS
-        //suspects = dataBase.askWeapon("wand");//PREGUNTARA A LA BASES SI EL CULPABLE TIENE ESA ARMA, SI NO LA TIENE REVISAR SI UN SOSPECHOSLO LA TIENE Y LO ELIMINA
+        
         characters = dataBase.actCharacters(characters, suspects);
         MainView screen = new MainView();
         
+        ArrayList suspectsX = dataBase.askWeapon(characters.get(0).getW1().getWeaponName());
+        suspects = (ArrayList<Character>) suspectsX.get(0);
+        int t = (int) suspectsX.get(1);
+
+ 
+        
+        /*
         ArrayList road = new ArrayList();
         for(int i=0;i<15;i++){
             road.add(0);
@@ -55,7 +62,7 @@ public class RoyalTraitor {
             k++;
             screen.initialDraws(characters, road);
             Thread.sleep(2000);
-        }
+        }*/
         
         
         

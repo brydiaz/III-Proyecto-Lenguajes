@@ -128,17 +128,20 @@ public class Prolog {
     
     public ArrayList askWeapon(String weapon){
         int hit = 1;
+        ArrayList x = new ArrayList();
         Query connect = new Query("consult('dataBase.pl')");
         if (connect.hasSolution()){
             
             Query addSus = new Query("askWeapon("+weapon+").");
             if(addSus.hasSolution()){
-                while(addSus.hasMoreSolutions()){
-                    addSus.nextSolution();
-                }
-            }
+               x.add(this.getSuspects());
+               x.add(1);
+            }else{
+                x.add(this.getSuspects());
+                x.add(0);
+            } 
         }
-        return this.getSuspects();
+        return x;
     }
     
     public ArrayList<Character> actCharacters(ArrayList<Character> characters,ArrayList<Character> guilty){
