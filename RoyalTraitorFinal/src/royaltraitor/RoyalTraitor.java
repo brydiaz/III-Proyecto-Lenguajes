@@ -15,6 +15,7 @@ import logic.Weapon;
 import logic.Character;
 import org.jpl7.Query;
 import org.jpl7.Term;
+import view.MainScreen;
 import view.MainView;
 
 /**
@@ -28,8 +29,8 @@ public class RoyalTraitor {
      */
     public static void main(String[] args) throws InterruptedException {
         // TODO code application logic here
-        Game game = new Game();
-        game.gameOn();
+            MainScreen main = new MainScreen();
+            main.setVisible(true);
         
     }
     

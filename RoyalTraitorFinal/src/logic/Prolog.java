@@ -134,9 +134,6 @@ public class Prolog {
     public ArrayList askWeapon(String weapon){
         int hit = 1;
         ArrayList x = new ArrayList();
-    
-    
-            System.out.println(weapon);
             Query addSus = new Query("askWeapon("+weapon+").");
             if(addSus.hasSolution()){
                x.add(this.getSuspects());

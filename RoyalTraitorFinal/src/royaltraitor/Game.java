@@ -57,7 +57,6 @@ public class Game {
                 
             }
         }
-        System.out.println(charactersToShow.size());
 
         MainView screen = new MainView(this,road);
         screen.resizeBackground();
@@ -66,11 +65,7 @@ public class Game {
        
         screen.initialDraws(characters, road);
         System.out.println(guilty.getName());
-        while(!winner && (int)road.get(road.size()-1)!=1){
-            
-            
-        }
-        System.out.println("Ganaste");
+   
        
     }
     

@@ -46,26 +46,30 @@ public class MainView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jbackground = new javax.swing.JLabel();
         jLabelClickDices = new javax.swing.JLabel();
+        jbackground = new javax.swing.JLabel();
         thiefNameText = new javax.swing.JTextField();
         jLabelThiefName = new javax.swing.JLabel();
-        setDicesButton = new javax.swing.JButton();
         checkNameButton = new javax.swing.JButton();
         dice1 = new javax.swing.JLabel();
         dice2 = new javax.swing.JLabel();
         dice3 = new javax.swing.JLabel();
+        setDicesButton = new javax.swing.JButton();
         showClue = new javax.swing.JLabel();
         cluetext = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         clues = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
-
-        jbackground.setPreferredSize(new java.awt.Dimension(792, 504));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelClickDices.setText("Click the button to set the dices!");
+        getContentPane().add(jLabelClickDices, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 50, -1, -1));
+
+        jbackground.setPreferredSize(new java.awt.Dimension(792, 504));
+        getContentPane().add(jbackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 802, -1));
 
         thiefNameText.setName("thiefNameText"); // NOI18N
         thiefNameText.addActionListener(new java.awt.event.ActionListener() {
@@ -73,8 +77,34 @@ public class MainView extends javax.swing.JFrame {
                 thiefNameTextActionPerformed(evt);
             }
         });
+        getContentPane().add(thiefNameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 306, 166, 30));
 
         jLabelThiefName.setText("Did you find the thief?  Write its name");
+        getContentPane().add(jLabelThiefName, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 289, -1, -1));
+
+        checkNameButton.setText("Check name!");
+        checkNameButton.setName("checkName"); // NOI18N
+        checkNameButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkNameButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(checkNameButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(916, 342, -1, -1));
+
+        dice1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        dice1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(33, 33, 33), 1, true));
+        dice1.setName("dice1"); // NOI18N
+        getContentPane().add(dice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 98, 60, 60));
+
+        dice2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        dice2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(33, 33, 33), 1, true));
+        dice2.setName("dice2"); // NOI18N
+        getContentPane().add(dice2, new org.netbeans.lib.awtextra.AbsoluteConstraints(892, 98, 60, 60));
+
+        dice3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        dice3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(33, 33, 33), 1, true));
+        dice3.setName("dice3"); // NOI18N
+        getContentPane().add(dice3, new org.netbeans.lib.awtextra.AbsoluteConstraints(964, 98, 60, 60));
 
         setDicesButton.setBackground(new java.awt.Color(44, 165, 192));
         setDicesButton.setText("Click!");
@@ -84,100 +114,20 @@ public class MainView extends javax.swing.JFrame {
                 setDicesButtonActionPerformed(evt);
             }
         });
-
-        checkNameButton.setText("Check name!");
-        checkNameButton.setName("checkName"); // NOI18N
-        checkNameButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkNameButtonActionPerformed(evt);
-            }
-        });
-
-        dice1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        dice1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(33, 33, 33), 1, true));
-        dice1.setName("dice1"); // NOI18N
-
-        dice2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        dice2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(33, 33, 33), 1, true));
-        dice2.setName("dice2"); // NOI18N
-
-        dice3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        dice3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(33, 33, 33), 1, true));
-        dice3.setName("dice3"); // NOI18N
+        getContentPane().add(setDicesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 70, -1, -1));
 
         showClue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         showClue.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(33, 33, 33), 1, true));
         showClue.setName("showClue"); // NOI18N
+        getContentPane().add(showClue, new org.netbeans.lib.awtextra.AbsoluteConstraints(894, 176, 58, 72));
+        getContentPane().add(cluetext, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 260, 248, 23));
 
         clues.setColumns(20);
         clues.setRows(5);
         jScrollPane1.setViewportView(clues);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jbackground, javax.swing.GroupLayout.PREFERRED_SIZE, 802, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelClickDices)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(setDicesButton)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(thiefNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabelThiefName)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(checkNameButton)
-                                        .addGap(38, 38, 38)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(showClue, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(dice1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(dice2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(dice3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(cluetext, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelClickDices)
-                    .addComponent(setDicesButton))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dice2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dice3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dice1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(showClue, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cluetext, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelThiefName)
-                .addGap(1, 1, 1)
-                .addComponent(thiefNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(checkNameButton)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jbackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(846, 390, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 300, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -196,7 +146,13 @@ public class MainView extends javax.swing.JFrame {
     //Boton setDicesButton
     private void setDicesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setDicesButtonActionPerformed
         // TODO add your handling code here:
-        
+        if ((int)road.get(road.size()-1) == 1){
+            
+            GameOver go = new  GameOver("OH! Perdiste");
+            go.setVisible(true);
+            this.setVisible(false);
+            
+        }
         this.pause = true;
         road.set(posX-1,0);
         road.set(posX, 1);
@@ -351,7 +307,7 @@ public class MainView extends javax.swing.JFrame {
             */
             
         }
-        //this.pause = false;
+ 
 
     }//GEN-LAST:event_setDicesButtonActionPerformed
 
@@ -454,12 +410,12 @@ public class MainView extends javax.swing.JFrame {
             String nameC = "question";
             
             if (road.get(i).equals(1)){
-                nameC = "thiefH";
+                nameC = "r1";
             }
             
             
             else{
-                    nameC = "mud";
+                    nameC = "r";
                 }
             
 
@@ -473,9 +429,9 @@ public class MainView extends javax.swing.JFrame {
             if (i == 1||i == 5||i == 10||i == 14){
         
                 if (road.get(i).equals(1)){
-                nameC = "thiefV";
+                nameC = "r1";
                 }else{
-                    nameC = "mud2";
+                    nameC = "r";
                 }
                 posY = posY+45;
                 posX = posX-45;
@@ -499,9 +455,11 @@ public class MainView extends javax.swing.JFrame {
    
 
        if(this.thiefNameText.getText().equals(this.game.guilty.getName())){
-           System.out.println("x");
            this.game.winner = true;
            this.thiefNameText.setText("Ganaste");
+           GameOver go = new  GameOver("¡ADIVINASTE!");
+           go.setVisible(true);
+           this.setVisible(false);
            
        }else{
        this.thiefNameText.setText("Fallaste");
@@ -522,6 +480,7 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JLabel dice1;
     private javax.swing.JLabel dice2;
     private javax.swing.JLabel dice3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelClickDices;
     private javax.swing.JLabel jLabelThiefName;
     private javax.swing.JScrollPane jScrollPane1;
