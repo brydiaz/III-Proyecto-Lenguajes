@@ -15,14 +15,17 @@ import org.jpl7.Term;
  * @author bryan
  */
 public class Prolog {
+    Query connect ;
 
     public Prolog() {
+        this.connect  = new Query("consult('dataBase.pl')");
+        connect.hasSolution();
     }
     
     public ArrayList getWeapons(){
-        Query connect = new Query("consult('dataBase.pl')");
+        
         ArrayList weapons = new ArrayList();
-        if (connect.hasSolution()){
+      
             Query weaponConsult = new Query("weapon(X).");
             while(weaponConsult.hasMoreSolutions()){
                 Map<String, Term> k = weaponConsult.nextSolution();
@@ -30,14 +33,14 @@ public class Prolog {
                 weapons.add(newWeapon);
             }
             
-        }
+        
         return weapons;
     }
     
     public ArrayList getCharacters(){
-        Query connect = new Query("consult('dataBase.pl')");
+
         ArrayList characters = new ArrayList();
-        if (connect.hasSolution()){
+
             Query charactersConsult = new Query("character(ID,NAME, weapon(W1), weapon(W2),weapon(W3)).");
             while(charactersConsult.hasMoreSolutions()){
                 Map<String, Term> k = charactersConsult.nextSolution();
@@ -49,16 +52,16 @@ public class Prolog {
                 Weapon w3 = new  Weapon(k.get("W3").toString());
                 Character newCharacter = new Character(idToAdd, name, w1, w2, w3);
                 characters.add(newCharacter);
-            }
+            
             
         }
         return characters;
     }
     
     public Character getGuilty(){
-        Query connect = new Query("consult('dataBase.pl')");
+       
         Character finalGuilty = null;
-        if (connect.hasSolution()){
+ 
             Query guiltyProcess = new Query("generateGuilty().");
             if(guiltyProcess.hasSolution()){
                 Query guilty = new Query("guilty(ID,NAME,weapon(W1),weapon(W2),weapon(W3))");
@@ -72,7 +75,7 @@ public class Prolog {
                     Weapon w3 = new  Weapon(k.get("W3").toString());
                     finalGuilty = new Character(idToAdd, name, w1, w2, w3);
                     finalGuilty.setUp(true);
-                }
+                
             }
            
     }
@@ -80,6 +83,7 @@ public class Prolog {
     }
     
     public int make2IntialSuspects(){
+        System.out.println("holi");
         int hit = 1;
         Query connect = new Query("consult('dataBase.pl')");
         ArrayList suspects = new ArrayList();
@@ -87,6 +91,7 @@ public class Prolog {
             Query suspectsConsult = new Query("turn2Arround().");
             if(suspectsConsult.hasSolution()){
                 hit = 0;
+                
             }
         }
             
@@ -94,9 +99,9 @@ public class Prolog {
     }
     
     public ArrayList getSuspects(){
-        Query connect = new Query("consult('dataBase.pl')");
+   ;
         ArrayList suspects = new ArrayList();
-        if (connect.hasSolution()){
+
             Query suspectsConsult = new Query("faceUp(ID,NAME, weapon(W1), weapon(W2),weapon(W3)).");
             while(suspectsConsult.hasMoreSolutions()){
                 Map<String, Term> k = suspectsConsult.nextSolution();
@@ -108,7 +113,7 @@ public class Prolog {
                 Weapon w3 = new  Weapon(k.get("W3").toString());
                 Character newCharacter = new Character(idToAdd, name, w1, w2, w3);
                 suspects.add(newCharacter);
-            }
+            
             
         }
         return suspects;
@@ -116,12 +121,12 @@ public class Prolog {
     
     public ArrayList addSuspect(String name){
         int hit = 1;
-        Query connect = new Query("consult('dataBase.pl')");
-        if (connect.hasSolution()){
+   
+        ArrayList x = new ArrayList();
             Query addSus = new Query("addToSuspects("+name+").");
             if(addSus.hasSolution()){
                 hit = 0;
-            }
+            
         }
         return this.getSuspects();
     }
@@ -129,32 +134,55 @@ public class Prolog {
     public ArrayList askWeapon(String weapon){
         int hit = 1;
         ArrayList x = new ArrayList();
-        Query connect = new Query("consult('dataBase.pl')");
-        if (connect.hasSolution()){
-            
             Query addSus = new Query("askWeapon("+weapon+").");
             if(addSus.hasSolution()){
                x.add(this.getSuspects());
-               x.add(1);
+               x.add(0);
             }else{
                 x.add(this.getSuspects());
-                x.add(0);
+                x.add(1);
             } 
-        }
+        
         return x;
     }
     
     public ArrayList<Character> actCharacters(ArrayList<Character> characters,ArrayList<Character> guilty){
+        ArrayList<Character> finalC = new ArrayList<Character>();
         for(int i = 0; i<guilty.size();i++){
             int id = guilty.get(i).getId();
             for(int j = 0; j<characters.size();j++){
                 if(id == characters.get(j).getId()){
                     characters.get(j).setUp(true);
+                    
                 }
+                
             }
         }
-        return characters;
+        for(int i = 0; i<characters.size();i++){
+            finalC.add(characters.get(i));
+        }
+       
+        return finalC;
     }
-   
+    public ArrayList<Character> actCharacters2(ArrayList<Character> characters,ArrayList<Character> guilty){
+        ArrayList<Character> finalC = new ArrayList<Character>();
+        for(int i = 0; i<guilty.size();i++){
+            int id = guilty.get(i).getId();
+            for(int j = 0; j<characters.size();j++){
+                if(id == characters.get(j).getId()){
+                    characters.get(j).setUp(false);
+                    
+                }
+                
+            }
+        }
+        for(int i = 0; i<characters.size();i++){
+            finalC.add(characters.get(i));
+        }
+       
+        return finalC;
+    }
+    
+    
     
 }

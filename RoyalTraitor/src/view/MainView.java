@@ -5,22 +5,35 @@
  */
 package view;
 
-import java.awt.Component;
 import java.util.ArrayList;
+import java.util.Random;
+import java.lang.Math;
+import javax.lang.model.SourceVersion;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JRootPane;
 import royaltraitor.RoyalTraitor;
 import logic.Character;
+import logic.Prolog;
+import logic.Weapon;
+import royaltraitor.Game;
 
 /**
  *
  * @author bryan
  */
 public class MainView extends javax.swing.JFrame {
-    boolean f = true;
-    public MainView() {
+    public boolean pause = false;
+    Game game;
+    ArrayList<Character> characters;
+    ArrayList road = new ArrayList();
+    int posX = 1; 
+    Prolog func;
+    
+    public MainView(Game game, ArrayList road) {
+        this.game = game;
+        this.road = road;
+        this.characters = characters;
+       
         initComponents();
     }
 
@@ -33,29 +46,274 @@ public class MainView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabelClickDices = new javax.swing.JLabel();
         jbackground = new javax.swing.JLabel();
+        thiefNameText = new javax.swing.JTextField();
+        jLabelThiefName = new javax.swing.JLabel();
+        checkNameButton = new javax.swing.JButton();
+        dice1 = new javax.swing.JLabel();
+        dice2 = new javax.swing.JLabel();
+        dice3 = new javax.swing.JLabel();
+        setDicesButton = new javax.swing.JButton();
+        showClue = new javax.swing.JLabel();
+        cluetext = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        clues = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 0, 0));
+        setMinimumSize(new java.awt.Dimension(1088, 504));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabelClickDices.setText("Click the button to set the dices!");
+        getContentPane().add(jLabelClickDices, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 80, -1, -1));
 
         jbackground.setPreferredSize(new java.awt.Dimension(792, 504));
+        getContentPane().add(jbackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jbackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jbackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        thiefNameText.setName("thiefNameText"); // NOI18N
+        thiefNameText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                thiefNameTextActionPerformed(evt);
+            }
+        });
+        getContentPane().add(thiefNameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 300, 166, 30));
+
+        jLabelThiefName.setText("Did you find the thief?  Write its name");
+        getContentPane().add(jLabelThiefName, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 280, -1, 20));
+
+        checkNameButton.setText("Check name!");
+        checkNameButton.setName("checkName"); // NOI18N
+        checkNameButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkNameButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(checkNameButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 340, -1, -1));
+
+        dice1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        dice1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(33, 33, 33), 1, true));
+        dice1.setName("dice1"); // NOI18N
+        getContentPane().add(dice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 100, 60, 60));
+
+        dice2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        dice2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(33, 33, 33), 1, true));
+        dice2.setName("dice2"); // NOI18N
+        getContentPane().add(dice2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 100, 60, 60));
+
+        dice3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        dice3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(33, 33, 33), 1, true));
+        dice3.setName("dice3"); // NOI18N
+        getContentPane().add(dice3, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 100, 60, 60));
+
+        setDicesButton.setBackground(new java.awt.Color(44, 165, 192));
+        setDicesButton.setText("Click!");
+        setDicesButton.setName("setDicesButton"); // NOI18N
+        setDicesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setDicesButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(setDicesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 190, -1, -1));
+
+        showClue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        showClue.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(33, 33, 33), 1, true));
+        showClue.setName("showClue"); // NOI18N
+        getContentPane().add(showClue, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 180, 58, 72));
+        getContentPane().add(cluetext, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 260, 248, 23));
+
+        clues.setColumns(20);
+        clues.setRows(5);
+        jScrollPane1.setViewportView(clues);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 390, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/resources/sidebar.png"))); // NOI18N
+        jLabel1.setPreferredSize(new java.awt.Dimension(300, 504));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 0, 300, 510));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void thiefNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thiefNameTextActionPerformed
+        // TO add your handling code here:
+    }//GEN-LAST:event_thiefNameTextActionPerformed
+    
+    
+    // Boton para buscar si el nombre coincide con el del mae
+    private void checkNameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkNameButtonActionPerformed
+        // TODO add your handling code here:
+        this.checkWinner();
+    }//GEN-LAST:event_checkNameButtonActionPerformed
+    
+    //Boton setDicesButton
+    private void setDicesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setDicesButtonActionPerformed
+        // TODO add your handling code here:
+        if ((int)road.get(road.size()-1) == 1){
+            
+            GameOver go = new  GameOver("OH! Perdiste");
+            go.setVisible(true);
+            this.setVisible(false);
+            
+        }
+        this.pause = true;
+        road.set(posX-1,0);
+        road.set(posX, 1);
+        initialDraws(this.game.characters, road);
+        posX = posX +1;
+        // Generar 3 números random
+        Random rand = new Random();
+        int limite = 3;
+        
+        int dadoRandom1 = rand.nextInt(limite);
+        int dadoRandom2 = rand.nextInt(limite);
+        int dadoRandom3 = rand.nextInt(limite);
+        
+        // 0 -> ojo
+        // 1 -> patita
+        // 2 -> sadface
+        
+        // Cambiar iconos según el random
+        
+        // DADO 1
+        if(dadoRandom1 == 0){
+            this.dice1.setText("");
+            ImageIcon dado1 = new ImageIcon(RoyalTraitor.class.getResource("/view/resources/others/eye.png"));
+            this.dice1.setIcon(dado1);
+        }else if(dadoRandom1 == 1){
+            this.dice1.setText("");
+            ImageIcon dado1 = new ImageIcon(RoyalTraitor.class.getResource("/view/resources/others/paw.png"));
+            this.dice1.setIcon(dado1);
+        }else if(dadoRandom1 == 2){
+            this.dice1.setText("");
+            ImageIcon dado1 = new ImageIcon(RoyalTraitor.class.getResource("/view/resources/others/sadface.png"));
+            this.dice1.setIcon(dado1);
+        }
+        
+        
+        // DADO 2
+        if(dadoRandom2 == 0){
+            this.dice2.setText("");
+            ImageIcon dado2 = new ImageIcon(RoyalTraitor.class.getResource("/view/resources/others/eye.png"));
+            this.dice2.setIcon(dado2);
+        }else if(dadoRandom2 == 1){
+            this.dice2.setText("");
+            ImageIcon dado2 = new ImageIcon(RoyalTraitor.class.getResource("/view/resources/others/paw.png"));
+            this.dice2.setIcon(dado2);
+        }else if(dadoRandom2 == 2){
+            this.dice2.setText("");
+            ImageIcon dado2 = new ImageIcon(RoyalTraitor.class.getResource("/view/resources/others/sadface.png"));
+            this.dice2.setIcon(dado2);
+        }
+        
+        // DADO 3
+        if(dadoRandom3 == 0){
+            this.dice3.setText("");
+            ImageIcon dado3 = new ImageIcon(RoyalTraitor.class.getResource("/view/resources/others/eye.png"));
+            this.dice3.setIcon(dado3);
+        }else if(dadoRandom3 == 1){
+            this.dice3.setText("");
+            ImageIcon dado3 = new ImageIcon(RoyalTraitor.class.getResource("/view/resources/others/paw.png"));
+            this.dice3.setIcon(dado3);
+        }else if(dadoRandom3 == 2){
+            this.dice3.setText("");
+            ImageIcon dado3 = new ImageIcon(RoyalTraitor.class.getResource("/view/resources/others/sadface.png"));
+            this.dice3.setIcon(dado3);
+        }
+        
+        
+        
+        // Verificar si hay elementos iguales
+        if(dadoRandom1 == dadoRandom2 || dadoRandom1 == dadoRandom3 || dadoRandom2 == dadoRandom3){
+            ;
+            
+            if(dadoRandom1 == 0 && dadoRandom2 == 0 || 
+               dadoRandom1 == 0 && dadoRandom3 == 0 ||
+               dadoRandom2 == 0 && dadoRandom3 == 0){
+                int r = (int) Math.floor(Math.random()*this.game.weapons.size());
+                Weapon wt = this.game.weapons.get(r);
+                this.game.weapons.remove(wt);
+                ImageIcon wI = new ImageIcon(RoyalTraitor.class.getResource("/view/resources/weapons/"+wt.getWeaponName()+".png"));
+                this.showClue.setIcon(wI);
+                ArrayList x = this.game.dataBase.askWeapon(wt.getWeaponName());
+                
+                
+                this.game.suspects = (ArrayList<Character>) x.get(0);
+              
+                int have = 0;
+                have = (int) x.get(1);
+                if(have == 1){
+                    this.cluetext.setText("PISTA!: No tiene, actualizamos");
+                    this.clues.setText(this.clues.getText()+"NO TIENE: "+wt.getWeaponName()+"\n");
+                    for (int i = 0;i<this.game.characters.size();i++){
+                        this.game.characters.get(i).setUp(false);
+                    }
+                    this.game.characters = this.game.dataBase.actCharacters(this.game.characters, this.game.suspects);
+;                   initialDraws(this.game.characters, road);
+
+                }else{
+                    this.clues.setText(this.clues.getText()+"SI TIENE: "+wt.getWeaponName()+"\n");
+                    this.cluetext.setText("PISTA!: Sí tiene, NO actualizamos");
+
+            }
+                
+            }
+            
+            else if(dadoRandom1 == 1 && dadoRandom2 == 1 || 
+               dadoRandom1 == 1 && dadoRandom3 == 1 ||
+               dadoRandom2 == 1 && dadoRandom3 == 1){
+               
+                
+                int r = (int) Math.floor(Math.random()*this.game.charactersToShow.size());
+                Character wt = this.game.charactersToShow.get(r);
+                this.game.charactersToShow.remove(r);
+                this.game.suspects = this.game.dataBase.addSuspect(wt.getName());
+                for (int i = 0;i<this.game.characters.size();i++){
+                        this.game.characters.get(i).setUp(false);
+                    }
+                    ImageIcon wI = new ImageIcon(RoyalTraitor.class.getResource("/view/resources/characters/"+wt.getName()+".png"));
+                    this. showClue.setIcon(wI);
+                    this.cluetext.setText("SOSPECHOSO! Nuevo");
+                    this.game.characters = this.game.dataBase.actCharacters(this.game.characters, this.game.suspects);
+;                   initialDraws(this.game.characters, road);
+                }
+            
+           
+            } else{
+                 this.cluetext.setText("Esperando..");
+                 ImageIcon pI = new ImageIcon(RoyalTraitor.class.getResource("/view/resources/characters/"+"question.png"));
+                 this.showClue.setIcon(pI);
+
+                 initialDraws(this.game.characters, road);
+            
+            
+            /*
+            
+            // Mostrar pista -> label llamado "showClue"
+            if(dadoRandom1 == 0 || dadoRandom2 == 0|| dadoRandom3 == 0){
+                
+            }else
+            
+            
+             // Mostrar texto de "Show 2 suspects" -> label llamado "showClue"
+             if(dadoRandom1 == 1 || dadoRandom2 == 1|| dadoRandom3 == 1){
+                this.showClue.setText("Mostrar 2 sospechosos");
+            }else
+             
+             
+             
+             // Mostrar texto de "The thief keeps walking :(" -> label llamado "showClue"
+             if(dadoRandom1 == 2 || dadoRandom2 == 2 || dadoRandom3 == 2){
+                this.showClue.setText("The thief keeps walking :(");
+            }
+            
+            */
+            
+        }
+ 
+
+    }//GEN-LAST:event_setDicesButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,29 +414,32 @@ public class MainView extends javax.swing.JFrame {
             String nameC = "question";
             
             if (road.get(i).equals(1)){
-                nameC = "thiefH";
+                nameC = "r1";
             }
             
-            else if (i == 1||i == 5||i == 10||i == 14){
-        
-                if (road.get(i).equals(1)){
-                nameC = "thiefV";
-                }else{
-                    nameC = "mud2";
-                }
-                posY = posY+45;
-                posX = posX-45;
-            }else{
-                    nameC = "mud";
+            
+            else{
+                    nameC = "r";
                 }
             
 
             JLabel p = new JLabel();
             p.setSize(45,45);
             ImageIcon pI = new ImageIcon(RoyalTraitor.class.getResource("/view/resources/characters/"+nameC+".png"));
-            p.setIcon(pI);
+            
             p.setLocation(posX, posY);
+            p.setIcon(pI);
             posX = posX+45;
+            if (i == 1||i == 5||i == 10||i == 14){
+        
+                if (road.get(i).equals(1)){
+                nameC = "r1";
+                }else{
+                    nameC = "r";
+                }
+                posY = posY+45;
+                posX = posX-45;
+            }
             
             this.jbackground.add(p);
             
@@ -186,16 +447,56 @@ public class MainView extends javax.swing.JFrame {
             }
  
         this.jbackground.repaint();
+        
+        
     
     }
-   
     
+    /**
+     *
+     */
+   public void checkWinner(){
+   
+
+       if(this.thiefNameText.getText().equals(this.game.guilty.getName())){
+           this.game.winner = true;
+           this.thiefNameText.setText("Ganaste");
+           GameOver go = new  GameOver("¡ADIVINASTE!");
+           go.setVisible(true);
+           this.setVisible(false);
+           
+       }else{
+       this.thiefNameText.setText("Fallaste");
+   }} 
+   
+    public void resizeBackground(){
+        this.jbackground.setSize(1100,504);
+    }
 
     
     
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton checkNameButton;
+    private javax.swing.JTextArea clues;
+    private javax.swing.JLabel cluetext;
+    private javax.swing.JLabel dice1;
+    private javax.swing.JLabel dice2;
+    private javax.swing.JLabel dice3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelClickDices;
+    private javax.swing.JLabel jLabelThiefName;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jbackground;
+    private javax.swing.JButton setDicesButton;
+    private javax.swing.JLabel showClue;
+    private javax.swing.JTextField thiefNameText;
     // End of variables declaration//GEN-END:variables
+
+    public SourceVersion getSupportedSourceVersion() {
+        return SourceVersion.RELEASE_13;
+    }
+
+    
 }
