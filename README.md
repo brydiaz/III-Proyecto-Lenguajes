@@ -69,7 +69,7 @@ El proyecto presente tiene cómo objetivo representar el juego "OutFoxed", un ju
 **Jose Alexander Artavia Quesada:** _(Aquí va el link de YouTube)_
 <br>
 
-**Bryan Andrey Díaz Barrientos:** _(Aquí va el link de YouTube)_
+**Bryan Andrey Díaz Barrientos:** https://youtu.be/MCGv-oZD2MY
 <br> 
 
 **Josué Gerardo Gutiérrez Mora:** _(Aquí va el link de YouTube)_
