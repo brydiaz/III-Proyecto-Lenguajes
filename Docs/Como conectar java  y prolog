@@ -1,7 +1,0 @@
-COMO CONECTAR PROLOG A JAVA
-
-DESCARGAR SWI-PROLOG-JAVA
-
-IR AL PROJECTO Y CONFIGURAR EN RUN -> VM ->
-
--Djava.library.path=/usr/lib/swi-prolog/lib/"laArquitecturaQueTengan/ 
