@@ -66,10 +66,10 @@ public class Game {
        
         screen.initialDraws(characters, road);
         System.out.println(guilty.getName());
-        //while(!winner && (int)road.get(road.size()-1)!=1){
-            //System.out.println("");
+        while(!winner && (int)road.get(road.size()-1)!=1){
             
-        //}
+            
+        }
         System.out.println("Ganaste");
        
     }

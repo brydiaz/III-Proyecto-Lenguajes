@@ -266,12 +266,11 @@ public class MainView extends javax.swing.JFrame {
         
         // Verificar si hay elementos iguales
         if(dadoRandom1 == dadoRandom2 || dadoRandom1 == dadoRandom3 || dadoRandom2 == dadoRandom3){
+            ;
             
-            int suma = dadoRandom1 + dadoRandom2;
-            int suma1 = dadoRandom1 + dadoRandom3;
-            int suma2 = dadoRandom2 + dadoRandom3;
-            
-            if(suma == 0 || suma1 == 0){
+            if(dadoRandom1 == 0 && dadoRandom2 == 0 || 
+               dadoRandom1 == 0 && dadoRandom3 == 0 ||
+               dadoRandom2 == 0 && dadoRandom3 == 0){
                 int r = (int) Math.floor(Math.random()*this.game.weapons.size());
                 Weapon wt = this.game.weapons.get(r);
                 this.game.weapons.remove(wt);
@@ -282,8 +281,6 @@ public class MainView extends javax.swing.JFrame {
                 
                 this.game.suspects = (ArrayList<Character>) x.get(0);
               
-                Character c = this.game.dataBase.getGuilty();
-                System.out.println(c.getName());
                 int have = 0;
                 have = (int) x.get(1);
                 if(have == 1){
@@ -303,9 +300,11 @@ public class MainView extends javax.swing.JFrame {
                 
             }
             
-            else if(suma1 == 2 || suma1 == 2){
+            else if(dadoRandom1 == 1 && dadoRandom2 == 1 || 
+               dadoRandom1 == 1 && dadoRandom3 == 1 ||
+               dadoRandom2 == 1 && dadoRandom3 == 1){
                
-                //this.showClue.setText("Mostrar 2 usuarios");
+                
                 int r = (int) Math.floor(Math.random()*this.game.charactersToShow.size());
                 Character wt = this.game.charactersToShow.get(r);
                 this.game.charactersToShow.remove(r);
@@ -320,13 +319,13 @@ public class MainView extends javax.swing.JFrame {
 ;                   initialDraws(this.game.characters, road);
                 }
             
-            else{
+           
+            } else{
                  this.cluetext.setText("Esperando..");
                  ImageIcon pI = new ImageIcon(RoyalTraitor.class.getResource("/view/resources/characters/"+"question.png"));
                  this.showClue.setIcon(pI);
 
                  initialDraws(this.game.characters, road);
-            }
             
             
             /*
