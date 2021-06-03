@@ -74,4 +74,4 @@ El proyecto presente tiene cómo objetivo representar un similar al "OutFoxed", 
 **Bryan Andrey Díaz Barrientos:** https://youtu.be/MCGv-oZD2MY
 <br> 
 
-**Josué Gerardo Gutiérrez Mora:** _(Aquí va el link de YouTube)_
+**Josué Gerardo Gutiérrez Mora:** https://youtu.be/s-TcYQyFYFI
