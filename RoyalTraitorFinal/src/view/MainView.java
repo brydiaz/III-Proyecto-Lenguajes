@@ -57,6 +57,8 @@ public class MainView extends javax.swing.JFrame {
         dice3 = new javax.swing.JLabel();
         showClue = new javax.swing.JLabel();
         cluetext = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        clues = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -107,6 +109,10 @@ public class MainView extends javax.swing.JFrame {
         showClue.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(33, 33, 33), 1, true));
         showClue.setName("showClue"); // NOI18N
 
+        clues.setColumns(20);
+        clues.setRows(5);
+        jScrollPane1.setViewportView(clues);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -121,26 +127,28 @@ public class MainView extends javax.swing.JFrame {
                         .addComponent(setDicesButton)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(10, 10, 10)
-                                    .addComponent(thiefNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabelThiefName)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(checkNameButton)
-                                    .addGap(38, 38, 38)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(showClue, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(dice1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(dice2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(dice3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(cluetext, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(10, 10, 10)
+                                        .addComponent(thiefNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabelThiefName)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(checkNameButton)
+                                        .addGap(38, 38, 38)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(showClue, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(dice1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(dice2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(dice3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cluetext, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -165,6 +173,8 @@ public class MainView extends javax.swing.JFrame {
                 .addComponent(thiefNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(checkNameButton)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jbackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -278,6 +288,7 @@ public class MainView extends javax.swing.JFrame {
                 have = (int) x.get(1);
                 if(have == 1){
                     this.cluetext.setText("PISTA!: No tiene, actualizamos");
+                    this.clues.setText(this.clues.getText()+"NO TIENE: "+wt.getWeaponName()+"\n");
                     for (int i = 0;i<this.game.characters.size();i++){
                         this.game.characters.get(i).setUp(false);
                     }
@@ -285,6 +296,7 @@ public class MainView extends javax.swing.JFrame {
 ;                   initialDraws(this.game.characters, road);
 
                 }else{
+                    this.clues.setText(this.clues.getText()+"SI TIENE: "+wt.getWeaponName()+"\n");
                     this.cluetext.setText("PISTA!: Sí tiene, NO actualizamos");
 
             }
@@ -294,12 +306,25 @@ public class MainView extends javax.swing.JFrame {
             else if(suma1 == 2 || suma1 == 2){
                
                 //this.showClue.setText("Mostrar 2 usuarios");
-            }
+                int r = (int) Math.floor(Math.random()*this.game.charactersToShow.size());
+                Character wt = this.game.charactersToShow.get(r);
+                this.game.charactersToShow.remove(r);
+                this.game.suspects = this.game.dataBase.addSuspect(wt.getName());
+                for (int i = 0;i<this.game.characters.size();i++){
+                        this.game.characters.get(i).setUp(false);
+                    }
+                    ImageIcon wI = new ImageIcon(RoyalTraitor.class.getResource("/view/resources/characters/"+wt.getName()+".png"));
+                    this. showClue.setIcon(wI);
+                    this.cluetext.setText("SOSPECHOSO! Nuevo");
+                    this.game.characters = this.game.dataBase.actCharacters(this.game.characters, this.game.suspects);
+;                   initialDraws(this.game.characters, road);
+                }
             
             else{
                  this.cluetext.setText("Esperando..");
                  ImageIcon pI = new ImageIcon(RoyalTraitor.class.getResource("/view/resources/characters/"+"question.png"));
                  this.showClue.setIcon(pI);
+
                  initialDraws(this.game.characters, road);
             }
             
@@ -433,7 +458,20 @@ public class MainView extends javax.swing.JFrame {
                 nameC = "thiefH";
             }
             
-            else if (i == 1||i == 5||i == 10||i == 14){
+            
+            else{
+                    nameC = "mud";
+                }
+            
+
+            JLabel p = new JLabel();
+            p.setSize(45,45);
+            ImageIcon pI = new ImageIcon(RoyalTraitor.class.getResource("/view/resources/characters/"+nameC+".png"));
+            
+            p.setLocation(posX, posY);
+            p.setIcon(pI);
+            posX = posX+45;
+            if (i == 1||i == 5||i == 10||i == 14){
         
                 if (road.get(i).equals(1)){
                 nameC = "thiefV";
@@ -442,17 +480,7 @@ public class MainView extends javax.swing.JFrame {
                 }
                 posY = posY+45;
                 posX = posX-45;
-            }else{
-                    nameC = "mud";
-                }
-            
-
-            JLabel p = new JLabel();
-            p.setSize(45,45);
-            ImageIcon pI = new ImageIcon(RoyalTraitor.class.getResource("/view/resources/characters/"+nameC+".png"));
-            p.setIcon(pI);
-            p.setLocation(posX, posY);
-            posX = posX+45;
+            }
             
             this.jbackground.add(p);
             
@@ -490,12 +518,14 @@ public class MainView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton checkNameButton;
+    private javax.swing.JTextArea clues;
     private javax.swing.JLabel cluetext;
     private javax.swing.JLabel dice1;
     private javax.swing.JLabel dice2;
     private javax.swing.JLabel dice3;
     private javax.swing.JLabel jLabelClickDices;
     private javax.swing.JLabel jLabelThiefName;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jbackground;
     private javax.swing.JButton setDicesButton;
     private javax.swing.JLabel showClue;

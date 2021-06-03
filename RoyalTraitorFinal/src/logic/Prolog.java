@@ -122,7 +122,7 @@ public class Prolog {
     public ArrayList addSuspect(String name){
         int hit = 1;
    
-
+        ArrayList x = new ArrayList();
             Query addSus = new Query("addToSuspects("+name+").");
             if(addSus.hasSolution()){
                 hit = 0;
