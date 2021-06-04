@@ -68,7 +68,7 @@ El proyecto presente tiene cómo objetivo representar un similar al "OutFoxed", 
 
 
 ## :video_camera: Links a los vídeos explicativos de los integrantes del grupo
-**Jose Alexander Artavia Quesada:** _(Aquí va el link de YouTube)_
+**Jose Alexander Artavia Quesada:** https://www.youtube.com/watch?v=HYD_wZQpiuI
 <br>
 
 **Bryan Andrey Díaz Barrientos:** https://youtu.be/MCGv-oZD2MY
